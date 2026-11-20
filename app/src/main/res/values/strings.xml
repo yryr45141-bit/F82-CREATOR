@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">FF Creator</string>
+    <string name="tagline_gaming">منصة صناع محتوى Free Fire</string>
+    <string name="sign_in_google">تسجيل الدخول عبر Google</string>
+    <string name="sign_in_subtitle">سجل دخولك للمشاهدة والنشر والتفاعل مع أبطال Free Fire</string>
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_discover">اكتشف</string>
+    <string name="nav_publish">نشر</string>
+    <string name="nav_notifications">الإشعارات</string>
+    <string name="nav_profile">حسابي</string>
+    <string name="publish_title">نشر فيديو Free Fire</string>
+    <string name="discover_title">اكتشف</string>
+    <string name="notifications_title">الإشعارات</string>
+    <string name="messages_title">الرسائل الخاصة</string>
+    <string name="vip_title">عضوية VIP الحصرية</string>
+    <string name="verification_title">توثيق الحساب</string>
+    <string name="admin_panel_title">لوحة تحكم المالك</string>
+    <string name="error_generic">حدث خطأ غير متوقع، حاول مرة أخرى</string>
+</resources>

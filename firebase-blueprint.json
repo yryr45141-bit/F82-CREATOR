@@ -1,0 +1,244 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Public Free Fire creator profile without PII.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "username": { "type": "string" },
+        "displayName": { "type": "string" },
+        "bio": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "verified": { "type": "boolean" },
+        "vip": { "type": "boolean" },
+        "vipFrame": { "type": "string", "enum": ["none", "crimson_flame", "violet_cyber", "royal_gold"] },
+        "banned": { "type": "boolean" },
+        "followersCount": { "type": "integer" },
+        "followingCount": { "type": "integer" },
+        "likesCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "username", "displayName", "bio", "verified", "vip", "vipFrame", "banned", "followersCount", "followingCount", "likesCount", "createdAt", "updatedAt"]
+    },
+    "UserPrivateInfo": {
+      "title": "UserPrivateInfo",
+      "description": "Private user PII, FCM token, and blocked users list.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "email": { "type": "string" },
+        "fcmToken": { "type": "string" },
+        "blockedUserIds": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "email", "blockedUserIds", "createdAt", "updatedAt"]
+    },
+    "VideoPost": {
+      "title": "VideoPost",
+      "description": "Short-form Free Fire gameplay or highlight video.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorUsername": { "type": "string" },
+        "authorAvatarUrl": { "type": "string" },
+        "authorVerified": { "type": "boolean" },
+        "authorVip": { "type": "boolean" },
+        "authorVipFrame": { "type": "string" },
+        "description": { "type": "string" },
+        "hashtags": { "type": "array" },
+        "videoUrl": { "type": "string" },
+        "coverUrl": { "type": "string" },
+        "durationSec": { "type": "integer" },
+        "likesCount": { "type": "integer" },
+        "commentsCount": { "type": "integer" },
+        "viewsCount": { "type": "integer" },
+        "favoritesCount": { "type": "integer" },
+        "sharesCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "authorName", "authorUsername", "authorVerified", "authorVip", "authorVipFrame", "description", "hashtags", "videoUrl", "durationSec", "likesCount", "commentsCount", "viewsCount", "favoritesCount", "sharesCount", "createdAt", "updatedAt"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "Video comment or nested reply with pin and like support.",
+      "type": "object",
+      "properties": {
+        "videoId": { "type": "string" },
+        "userId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorUsername": { "type": "string" },
+        "authorAvatarUrl": { "type": "string" },
+        "authorVerified": { "type": "boolean" },
+        "authorVip": { "type": "boolean" },
+        "text": { "type": "string" },
+        "parentCommentId": { "type": "string" },
+        "replyToUsername": { "type": "string" },
+        "likesCount": { "type": "integer" },
+        "pinned": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["videoId", "userId", "authorName", "authorUsername", "authorVerified", "authorVip", "text", "likesCount", "pinned", "createdAt", "updatedAt"]
+    },
+    "AppNotification": {
+      "title": "AppNotification",
+      "description": "Real-time notification item for interactions, messages, and admin decisions.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "type": { "type": "string", "enum": ["like", "comment", "reply", "follow", "mention", "message", "verification", "vip", "broadcast"] },
+        "targetId": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "senderId", "senderName", "type", "title", "message", "read", "createdAt", "updatedAt"]
+    },
+    "ChatThread": {
+      "title": "ChatThread",
+      "description": "Private 1-on-1 conversation thread.",
+      "type": "object",
+      "properties": {
+        "participantIds": { "type": "array" },
+        "lastMessage": { "type": "string" },
+        "lastSenderId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["participantIds", "lastMessage", "lastSenderId", "createdAt", "updatedAt"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Private chat message with denormalized participantIds.",
+      "type": "object",
+      "properties": {
+        "chatId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "participantIds": { "type": "array" },
+        "text": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["chatId", "senderId", "participantIds", "text", "createdAt"]
+    },
+    "VerificationRequest": {
+      "title": "VerificationRequest",
+      "description": "Creator blue badge verification request.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "username": { "type": "string" },
+        "displayName": { "type": "string" },
+        "ffPlayerId": { "type": "string" },
+        "reason": { "type": "string" },
+        "followersCount": { "type": "integer" },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "rejectionReason": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "username", "displayName", "ffPlayerId", "reason", "followersCount", "status", "createdAt", "updatedAt"]
+    },
+    "VipRequest": {
+      "title": "VipRequest",
+      "description": "Creator VIP subscription request pending owner approval.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "username": { "type": "string" },
+        "displayName": { "type": "string" },
+        "planTier": { "type": "string", "enum": ["monthly", "seasonal", "legend"] },
+        "selectedFrame": { "type": "string", "enum": ["crimson_flame", "violet_cyber", "royal_gold"] },
+        "note": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "rejectionReason": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "username", "displayName", "planTier", "selectedFrame", "status", "createdAt", "updatedAt"]
+    },
+    "ReportItem": {
+      "title": "ReportItem",
+      "description": "Abuse report submitted against a video or user.",
+      "type": "object",
+      "properties": {
+        "reporterId": { "type": "string" },
+        "targetType": { "type": "string", "enum": ["video", "user"] },
+        "targetId": { "type": "string" },
+        "targetLabel": { "type": "string" },
+        "reason": { "type": "string" },
+        "status": { "type": "string", "enum": ["open", "resolved", "dismissed"] },
+        "adminNote": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["reporterId", "targetType", "targetId", "targetLabel", "reason", "status", "createdAt", "updatedAt"]
+    },
+    "TrendingHashtag": {
+      "title": "TrendingHashtag",
+      "description": "Popular Free Fire hashtag metadata.",
+      "type": "object",
+      "properties": {
+        "tag": { "type": "string" },
+        "usageCount": { "type": "integer" },
+        "featured": { "type": "boolean" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["tag", "usageCount", "featured", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Public creator profiles"
+    },
+    "/users/{userId}/private/{docId}": {
+      "schema": { "$ref": "#/entities/UserPrivateInfo" },
+      "description": "Private PII and blocked users"
+    },
+    "/users/{userId}/notifications/{notifId}": {
+      "schema": { "$ref": "#/entities/AppNotification" },
+      "description": "User real-time notifications"
+    },
+    "/videos/{videoId}": {
+      "schema": { "$ref": "#/entities/VideoPost" },
+      "description": "Free Fire short videos feed"
+    },
+    "/videos/{videoId}/comments/{commentId}": {
+      "schema": { "$ref": "#/entities/Comment" },
+      "description": "Comments and replies on videos"
+    },
+    "/chats/{chatId}": {
+      "schema": { "$ref": "#/entities/ChatThread" },
+      "description": "Private 1-on-1 chat threads"
+    },
+    "/chats/{chatId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/ChatMessage" },
+      "description": "Private chat messages"
+    },
+    "/verification_requests/{requestId}": {
+      "schema": { "$ref": "#/entities/VerificationRequest" },
+      "description": "Verification badge requests"
+    },
+    "/vip_requests/{requestId}": {
+      "schema": { "$ref": "#/entities/VipRequest" },
+      "description": "VIP membership requests"
+    },
+    "/reports/{reportId}": {
+      "schema": { "$ref": "#/entities/ReportItem" },
+      "description": "User and video moderation reports"
+    },
+    "/hashtags/{tagId}": {
+      "schema": { "$ref": "#/entities/TrendingHashtag" },
+      "description": "Trending Free Fire hashtags"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "FF Creator",
+  "description": "منصة تواصل اجتماعي لمجتمع Free Fire لعرض الفيديوهات القصيرة، التفاعل المباشر، الرسائل الخاصة، نظام التوثيق وVIP ولوحة تحكم المالك.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
